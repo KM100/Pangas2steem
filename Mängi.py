@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from time import sleep
+from random import randint
 
 aknad = ''
 aken = Tk()
@@ -50,9 +51,25 @@ def kontroll():
                 aken3.configure(background = '#42cef4')
                 ttk.Style().configure('DE.TLabel', background = '#42cef4', foreground = 'green')
                 ttk.Style().configure('DE.TButton', background = '#f45f41', foreground = 'green')
-                l11 = ttk.Label(raam, text = 'Mängud', font = ('arial', 18, 'bold'), foreground = 'black', style = 'DE.TLabel').grid(row = 0, column = 1, pady = 20, padx = 40)
+                l11 = ttk.Label(raam, text = 'Mängud', font = ('arial', 18, 'bold'), foreground = 'black', style = 'DE.TLabel').grid(row = 0, column = 1, pady = 20, padx = 20)
                 def arva():
+                    s = StringVar()
                     aken3.destroy()
+                    number = randint(1, 100)
+                    aken4 = Tk()
+                    aken4.title('Arva Number')
+                    aken4.geometry('400x300+600+300')
+                    aken4.configure(background = '#42cef4')
+                    ttk.Style().configure('EF.TLabel', background = '#42cef4', forground = 'green')
+                    ttk.Style().configure('EF.TButton', background = '#f45f41', forground = 'green')
+                    raam = ttk.Frame(aken4).grid(row = 0, column = 0)
+                    l12 = ttk.Label(raam, text = 'ARVA', font = ('arial', 18, 'bold'), style = 'EF.TLabel').grid(row = 0, column = 1, pady = 30)
+                    l13 = ttk.Label(raam, text = 'Sisestage arv 1-100', style = 'EF.TLabel').grid(row = 1, column = 0, pady = 20, padx = 20)
+                    e3 = ttk.Entry(raam, width = 10, textvariable = s).grid(row = 1, column = 1)
+                    def nr():
+                        if int(s) < number:
+                            l13 = ttk.Label(raam, text = 'ARV ON SUUREM', style = 'EF.TLabel', forground = 'green', font = ('arial', 10, 'bold')).grid(row = 4, column = 0, pady = 20, padx = 40)
+                    ok_nupp = ttk.Button(raam, text = 'OK', style = 'EF.TButton', command = nr).grid(row = 2, column = 1, pady = 20, padx = 40)
                 b4 = ttk.Button(raam, text = 'Arva number', style = 'DE.TButton', command = arva).grid(row = 1, column = 0, pady = 20, padx = 20)
             b3 = ttk.Button(raam, text = 'MÄNGIMA', style = 'BC.TButton', command = mängi).grid(row = 3, column = 1, pady = 60)
             aken2.mainloop()
