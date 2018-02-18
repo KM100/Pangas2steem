@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from time import sleep
+import hashlib
 
 aknad = ''
 aken = Tk()
@@ -12,7 +13,8 @@ aken.configure(background = '#42cef4')
 def kontroll():
     aken.destroy()
     id2 = id.get()
-    salakood2 = salakood.get()
+    salakood2 = hashlib.md5(salakood.get().encode())
+    salakood2 = salakood2.hexdigest()
     fail = open('jäätiskoer', 'r', encoding = 'UTF-8')
     kasutajad = []
     for rida in fail:
@@ -41,7 +43,7 @@ def kontroll():
             l8 = ttk.Label(raam, text = kasutajad[nr+3], style = 'BC.TLabel', foreground = 'red').grid(row = 2, column = 1, sticky = W)
             def välju():
                 aken2.destroy()
-            b2 = ttk.Button(raam, text = 'VÄLJU', style = 'BC.TButton', command = välju).grid(row = 3, column = 1, pady = 60, padx = 40)
+            b2 = ttk.Button(raam, text = 'VÄLJU', style = 'BC.TButton', command = välju).grid(row = 3, column = 1, pady = 60)
             aken2.mainloop()
         else:
             aken2 = Tk()

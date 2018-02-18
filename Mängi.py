@@ -51,7 +51,7 @@ def kontroll1():
                 ttk.Style().configure('DE.TButton', background = '#f45f41', foreground = 'green')
                 l11 = ttk.Label(raam, text = 'Mängud', font = ('arial', 18, 'bold'), foreground = 'black', style = 'DE.TLabel').grid(row = 0, column = 1, pady = 20, padx = 20)
                 def arva():
-                    s = 0
+                    s = StrinVar()
                     aken3.destroy()
                     number = randint(1, 100)
                     aken4 = Tk()
@@ -65,9 +65,10 @@ def kontroll1():
                     l13 = ttk.Label(raam, text = 'Sisestage arv 1-100', style = 'EF.TLabel').grid(row = 1, column = 0, pady = 20, padx = 20)
                     e3 = ttk.Entry(raam, width = 10, textvariable = s).grid(row = 1, column = 1)
                     def nr():
-                        if int(s) < number:
+                        a = s.get()
+                        if int(a) < number:
                             l13 = ttk.Label(raam, text = 'ARV ON SUUREM', style = 'EF.TLabel', foreground = 'red', font = ('arial', 13, 'bold')).grid(row = 4, column = 0, pady = 20, padx = 40)
-                        elif int(s) > number:
+                        elif int(a) > number:
                             l13 = ttk.Label(raam, text = 'ARV ON VÄIKSEM', style = 'EF.TLabel', foreground = 'red', font = ('arial', 13, 'bold')).grid(row = 4, column = 0, pady = 20, padx = 40)
                         else:
                             kasutajad[nr+3]+=s
@@ -150,7 +151,7 @@ def kontroll():
                 ttk.Style().configure('DE.TButton', background = '#f45f41', foreground = 'green')
                 l11 = ttk.Label(raam, text = 'Mängud', font = ('arial', 18, 'bold'), foreground = 'black', style = 'DE.TLabel').grid(row = 0, column = 1, pady = 20, padx = 20)
                 def arva():
-                    s = 0
+                    s = int(45)
                     aken3.destroy()
                     number = randint(1, 100)
                     aken4 = Tk()
@@ -162,14 +163,15 @@ def kontroll():
                     raam = ttk.Frame(aken4).grid(row = 0, column = 0)
                     l12 = ttk.Label(raam, text = 'ARVA', font = ('arial', 18, 'bold'), style = 'EF.TLabel').grid(row = 0, column = 1, pady = 30)
                     l13 = ttk.Label(raam, text = 'Sisestage arv 1-100', style = 'EF.TLabel').grid(row = 1, column = 0, pady = 20, padx = 20)
-                    e3 = ttk.Entry(raam, width = 10, textvariable = s).grid(row = 1, column = 1)
+                    e3 = ttk.Entry(raam, width = 10, textvariable = int(s)).grid(row = 1, column = 1)
                     def nr():
-                        if int(s) < number:
+                        a = s
+                        if a < number:
                             l13 = ttk.Label(raam, text = 'ARV ON SUUREM', style = 'EF.TLabel', foreground = 'red', font = ('arial', 13, 'bold')).grid(row = 4, column = 0, pady = 20, padx = 40)
-                        elif s > number:
+                        elif a > number:
                             l13 = ttk.Label(raam, text = 'ARV ON VÄIKSEM', style = 'EF.TLabel', foreground = 'red', font = ('arial', 13, 'bold')).grid(row = 4, column = 0, pady = 20, padx = 40)
                         else:
-                            kasutajad[nr+3]+=s
+                            kasutajad[nr+3]+=int(s)
                             fail = open('jäätiskoer', 'w', encoding = 'UTF-8')
                             for i in range(len(kasutajad)):
                                 fail.write(str(kasutajad[i]))
